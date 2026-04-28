@@ -1,0 +1,6 @@
+
+# AgentBox
+.agentbox/agents/*/.base/
+.agentbox/context.json
+.agentbox/locks/
+.env
