@@ -1,0 +1,5 @@
+fastapi==0.90.0
+# DEP ERROR: Vulnerable version of requests (hypothetical example for demo)
+requests==2.20.0
+# DEP ERROR: Outdated version
+pydantic==1.10.0

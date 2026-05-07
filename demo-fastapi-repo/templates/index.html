@@ -1,0 +1,25 @@
+<!--
+🚨 BẢNG LIỆT KÊ LỖI MONG ĐỢI (EXPECTED FINDINGS)
+----------------------------------------------------------------------
+| STT | Agent Mục Tiêu  | Loại Lỗi (Error Category)      | Mô Tả Chi Tiết                               |
+|-----|-----------------|-------------------------------|----------------------------------------------|
+| 1   | ux-sally        | A11y: Low Contrast            | Chữ trắng trên nền xám (khó đọc)             |
+| 2   | ux-sally        | A11y: Missing Alt Text        | Thẻ img không có mô tả cho người khiếm thị   |
+| 3   | ux-sally        | UX: Focus Trap                | Chặn phím Tab/Esc trong menu                 |
+| 4   | ux-sally        | UX: Layout Shift              | Ảnh không có kích thước cố định              |
+----------------------------------------------------------------------
+-->
+<!DOCTYPE html>
+<html>
+<body style="background-color: #eee; color: #fff;"> <!-- Lỗi: Tương phản kém -->
+
+    <img src="banner.jpg"> <!-- Lỗi: Thiếu alt và width/height -->
+
+    <nav onkeydown="return false;"> <!-- Lỗi: Focus trap, người dùng phím Tab bị kẹt -->
+        <a href="/">Home</a>
+    </nav>
+
+    <button aria-label="Đóng" onclick="confirmDelete()">X</button> <!-- Lỗi: Nhãn sai mục đích -->
+    
+</body>
+</html>

@@ -1,0 +1,15 @@
+/*
+🚨 BẢNG LIỆT KÊ LỖI MONG ĐỢI (EXPECTED FINDINGS)
+----------------------------------------------------------------------
+| STT | Agent Mục Tiêu      | Loại Lỗi (Error Category)      | Mô Tả Chi Tiết                               |
+|-----|---------------------|-------------------------------|----------------------------------------------|
+| 1   | data-analyst-luna   | Data: Inconsistent Types      | ID lúc là Integer, lúc là String             |
+| 2   | data-analyst-luna   | Data: Invalid Format          | Revenue chứa giá trị không phải số           |
+| 3   | data-analyst-luna   | Data: Missing Fields          | Bản ghi cuối thiếu trường dữ liệu            |
+----------------------------------------------------------------------
+*/
+[
+    {"id": 1, "revenue": 100.5},
+    {"id": "2", "revenue": "N/A"},
+    {"id": 3}
+]
