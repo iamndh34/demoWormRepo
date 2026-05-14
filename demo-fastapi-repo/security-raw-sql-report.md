@@ -1,0 +1,26 @@
+**⚠ 4 issues across 2 files — Your project is exposed to SQL injection via raw query construction**
+
+### `auth.py` (1 issue)
+
+| # | Severity | Issue Type | Location | Description |
+|--:|----------|------------|----------|-------------|
+| 1 | CRITICAL | SQL Injection | line 28-29 | The query interpolates `username` and `password` directly into SQL text, so attacker-controlled input can change the query syntax. For example, if `username = "' OR 1=1 --"`, authentication logic can be bypassed. [A03] |
+
+### `vulnerable_demo.py` (3 issues)
+
+| # | Severity | Issue Type | Location | Description |
+|--:|----------|------------|----------|-------------|
+| 1 | CRITICAL | SQL Injection | line 28-29 | `username` is concatenated into the SQL string before execution, which makes the query syntax attacker-controlled. An input like `"' OR 1=1 --"` can turn the lookup into an always-true condition. [A03] |
+| 2 | HIGH | SQL Injection | line 67 | `account_id` is embedded directly into the SQL text instead of being bound as a parameter. Even if it looks numeric today, any future path that accepts a non-validated value can expose the query to injection. [A03] |
+| 3 | LOW | Command Injection | line 38 | `subprocess.check_output(..., shell=True)` with `host` in the command string is dangerous because shell metacharacters can alter execution. For example, `host="127.0.0.1; id"` can execute an extra command. [A03] |
+
+### Summary notes
+
+| Item | Content |
+|------|---------|
+| Files affected | auth.py, vulnerable_demo.py |
+| Total findings | 4 |
+| Highest severity | CRITICAL |
+
+### Conclusion
+The codebase includes intentional demo-style vulnerabilities, but the raw SQL exposure is real and immediately exploitable where untrusted input reaches the query text. I’d block release until these query constructions are parameterized or removed from any non-demo path.
